@@ -3,7 +3,6 @@
  */
 import java.util.Random;
 import java.math.BigInteger;
-import java.math;
 public class MillerRabin {
 	
 	/**
@@ -45,17 +44,13 @@ public class MillerRabin {
 		{
 			return true;
 		}
-		else
+		for(int j=0; j < k; j++)
 		{
-			for(int j=0; j < k; j++)
+			if(intResult == n-1)
 			{
-				intResult = (intResult*intResult) % n;
-				System.out.println(intResult);
-				if(intResult == n-1)
-				{
-					return true;
-				}
+				return true;
 			}
+			intResult = (intResult*intResult) % n;
 		}
 
 		return false;
@@ -70,6 +65,7 @@ public class MillerRabin {
 	* @param p target probability.
 	*/
 	public static boolean isProbablyPrime(int n, double p) {
+		
 		return false;
 	}
 	
