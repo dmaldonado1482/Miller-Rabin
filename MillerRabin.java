@@ -2,6 +2,8 @@
  * David Maldonado
  */
 import java.util.Random;
+import java.math.BigInteger;
+import java.math;
 public class MillerRabin {
 	
 	/**
@@ -30,7 +32,31 @@ public class MillerRabin {
 		{
 			a = r.nextInt(((n-2) - 2) + 1) + 2;
 		}
-		System.out.println(a);
+
+		BigInteger bigQ = new BigInteger(Integer.toString(q));
+		BigInteger bigA = new BigInteger(Integer.toString(a));
+		BigInteger bigN = new BigInteger(Integer.toString(n));
+
+		// a to the q mod n
+		BigInteger result = bigA.modPow(bigQ, bigN);
+		int intResult = result.intValue();
+
+		if(intResult == 1)
+		{
+			return true;
+		}
+		else
+		{
+			for(int j=0; j < k; j++)
+			{
+				intResult = (intResult*intResult) % n;
+				System.out.println(intResult);
+				if(intResult == n-1)
+				{
+					return true;
+				}
+			}
+		}
 
 		return false;
 	}
@@ -50,7 +76,7 @@ public class MillerRabin {
 	public static void main(String[] args) {
 		// Write some code here to test that your functions work.
 
-        System.out.println(millerRabin(35));
+        System.out.println(millerRabin(199));
 	}
 	
 }
