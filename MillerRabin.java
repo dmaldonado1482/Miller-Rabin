@@ -65,14 +65,35 @@ public class MillerRabin {
 	* @param p target probability.
 	*/
 	public static boolean isProbablyPrime(int n, double p) {
-		
-		return false;
+
+		int t = 1;
+
+		double pr = 0;
+		while(pr < p)
+		{
+			pr = 1 - (1 / Math.pow(4, t));
+			t++;
+		}
+		System.out.println("Running Miller-Rabin " + t + " times.\n");
+
+		for(int i=0; i < t; i++)
+		{
+			boolean check = millerRabin(n);
+			if(!check)
+			{
+				System.out.println(n + " is definitely NOT prime.");
+				return false;
+			}
+		}
+		System.out.println(n + " is prime with a probability of at least " + p);
+		return true;
 	}
 	
 	public static void main(String[] args) {
 		// Write some code here to test that your functions work.
 
-        System.out.println(millerRabin(199));
+		//System.out.println(millerRabin(999983));
+		isProbablyPrime(999983, .99999);
 	}
 	
 }
